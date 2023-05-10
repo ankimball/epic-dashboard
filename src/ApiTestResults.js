@@ -3,14 +3,19 @@ import ItemDataGrid from "./ItemDataGrid";
 import "./App.css";
 
 const discussionEndpoints = [
-  'https://epic-sandbox-srw.s3.amazonaws.com/discussion-data.json',
-  'https://epic-sandbox-srw.s3.amazonaws.com/discussion-srw-data.json',
-  'https://epic-sandbox-srw.s3.amazonaws.com/discussion-upp-data.json'
+  'https://epic-sandbox-srw.s3.amazonaws.com/discussions-NOAA-EMC-UPP.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/discussions-NOAA-EPIC-land-offline_workflow.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/discussions-ufs-community-land-DA_workflow.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/discussions-ufs-community-ufs-weather-model.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/discussions-ufs-community-ufs-srweather-app.json'
 ];
 
 const issueEndpoints = [
-  'https://epic-sandbox-srw.s3.amazonaws.com/issue-srw-data.json',
-  'https://epic-sandbox-srw.s3.amazonaws.com/issue-upp-data.json'
+  'https://epic-sandbox-srw.s3.amazonaws.com/issues-NOAA-EMC-UPP.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/issues-NOAA-EPIC-land-offline_workflow.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/issues-ufs-community-land-DA_workflow.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/issues-ufs-community-ufs-weather-model.json',
+  'https://epic-sandbox-srw.s3.amazonaws.com/issues-ufs-community-ufs-srweather-app.json'
 ];
 
 function ApiTestResults() {
@@ -18,12 +23,13 @@ function ApiTestResults() {
       <div style={{ padding: 30 }}>
         <div>
           <h1>Discussions</h1>
-          <p>Includes: ufs-community, ufs-srweather-app, UPP</p>
+          <p>Includes: ufs-srweather-app, ufs-weather-model, UPP, land-DA_workflow, and NOAA-EPIC/land-offline_workflow</p>
+          <p><a href="https://github.com/orgs/ufs-community/discussions">UFS Community Discussions</a></p>
           <ItemDataGrid endpoints={discussionEndpoints} />
         </div>
         <div>
           <h1>Issues</h1>
-          <p>Includes: ufs-community, ufs-srweather-app, UPP</p>
+          <p>IIncludes: ufs-srweather-app, ufs-weather-model, UPP, land-DA_workflow, and NOAA-EPIC/land-offline_workflow</p>
           <ItemDataGrid endpoints={issueEndpoints} />
         </div>
       </div>
