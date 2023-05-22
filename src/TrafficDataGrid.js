@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
-
-// Define columns 
+// Define columns
 const columns = [
   { field: "name", headerName: "Name", width: 200 },
   { field: "email", headerName: "Email", width: 500 },
@@ -11,6 +10,8 @@ const columns = [
 
 const TrafficDataGrid = ({ endpoints }) => {
   const [data, setData] = useState([]);
+  const [since, setSince] = useState("");
+  const [until, setUntil] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +25,22 @@ const TrafficDataGrid = ({ endpoints }) => {
         );
 
         let jsonData = Array.prototype.concat.apply([], responses);
-        jsonData = jsonData.map((j, index) => ({ ...j, traffic: j.traffic.map((t, i) => ({ ...t, id: i + 1 })), id: index + 1 }));
+        jsonData = jsonData.map((j, index) => ({
+          ...j,
+          traffic: j.activity.map((activity, id) => ({
+            ...activity,
+            id: id + 1
+          })),
+          id: index + 1
+        }));
 
         setData(jsonData);
+
+        // Set the "since" and "until" values from the JSON data
+        if (jsonData.length > 0) {
+          setSince(jsonData[0].since);
+          setUntil(jsonData[0].until);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -36,15 +50,20 @@ const TrafficDataGrid = ({ endpoints }) => {
   }, [endpoints]);
 
   return (
-    <div style={{ height: 500, width: "100%" }}>
+    <div>
+      <div>
+        <p>Data from: {since} to {until}</p>
+      </div>
+      <div style={{ height: 500, width: "100%" }}>
         <DataGrid
-        rowHeight={40}
-        getRowId={(row) => row.id}
-        rows={data.length > 0 ? data[0].traffic : []}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10, 20, 30]}
+          rowHeight={40}
+          getRowId={(row) => row.id}
+          rows={data.length > 0 ? data[0].traffic : []}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10, 20, 30]}
         />
+      </div>
     </div>
   );
 };
