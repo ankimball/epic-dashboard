@@ -48,24 +48,31 @@ const TrafficDataGrid = ({ endpoints }) => {
 
     fetchData();
   }, [endpoints]);
-
-  return (
-    <div>
-      <div>
-        <p>Data from: {since} to {until}</p>
-      </div>
-      <div style={{ height: 500, width: "100%" }}>
-        <DataGrid
-          rowHeight={40}
-          getRowId={(row) => row.id}
-          rows={data.length > 0 ? data[0].traffic : []}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10, 20, 30]}
-        />
-      </div>
-    </div>
-  );
+  if (data.length > 0 ){
+        return (
+        <div>
+        <div>
+            <p>Data from: {since} to {until}</p>
+        </div>
+        <div style={{ height: 300, width: "100%" }}>
+            <DataGrid
+            rowHeight={40}
+            getRowId={(row) => row.id}
+            rows={data.length > 0 ? data[0].traffic : []}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 20]}
+            />
+        </div>
+        </div>
+    );
+  } else{
+        return (
+            <div>
+                <p>Error fetching data.</p>
+            </div>
+        )
+    }
 };
 
 export default TrafficDataGrid;
