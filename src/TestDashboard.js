@@ -39,6 +39,7 @@ function TestDashboard() {
           alignItems="center"
         >
           <Typography fontSize="18px" color="white">
+            {" "}
             Earth Prediction Innovation Center - Health Dashboard
           </Typography>
         </Box>
