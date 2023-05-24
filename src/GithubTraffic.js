@@ -9,7 +9,7 @@ function GithubTraffic() {
     const fetchRepoList = async () => {
       try {
         const response = await fetch(
-          "https://noaa-epic-prod-jenkins-artifacts.s3.amazonaws.com/jobs/infrastructure/dashboard-contributors/repo_files.txt"
+          "https://noaa-epic-prod-jenkins-artifacts.s3.amazonaws.com/jobs/infrastructure/dashboard-contributors/latest.txt"
         );
         const data = await response.text();
         const urls = data.split("\n").filter(url => url.trim() !== "");
