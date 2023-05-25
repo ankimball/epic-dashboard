@@ -44,8 +44,6 @@ const ArtifactsCellRenderer = ({ value }) => {
   );
 };
 
-
-
 // Define columns
 const columns = [
   { field: "Title", headerName: "Title", width: 100 },
